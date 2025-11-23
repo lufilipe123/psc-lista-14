@@ -1,0 +1,26 @@
+public class TestePolimorfismo {
+    
+    public static void main(String[] args) {
+        CartaoCredito cartao = new CartaoCredito("1234-5678-9012-3456");
+        Boleto boleto = new Boleto("00193373700000001000500940144816060680935031");
+        Pix pix = new Pix("chave.pix@exemplo.com");
+                
+        ProcessadorPagamento.processar(cartao, 150.75);
+        ProcessadorPagamento.processar(boleto, 499.00);
+        ProcessadorPagamento.processar(pix, 25.50);
+        
+        
+        MetodoPagamento[] metodos = {
+            new CartaoCredito("1111-2222-3333-4444"),
+            new Boleto("00193373700000001000500940144816060680935032"),
+            new Pix("outra.chave@exemplo.com")
+        };
+        
+        double[] valores = {100.0, 200.0, 50.0};
+        
+        for (int i = 0; i < metodos.length; i++) {
+            ProcessadorPagamento.processar(metodos[i], valores[i]);
+        }
+   
+  }
+}
